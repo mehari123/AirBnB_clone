@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-""" Contains the Review model 
-    and have great use
-"""
+""" Contains the Review model"""
 from models.base_model import BaseModel
 
 
