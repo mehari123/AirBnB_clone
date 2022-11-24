@@ -1,12 +1,13 @@
 #!/usr/bin/python3
-"""Implements the user's model"""
+"""A module containing the model for user data sets.
+"""
 from models.base_model import BaseModel
 
-class User(BaseModel):
-    email = ""
-    password = ""
-    first_name = ""
-    last_name = ""
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+class User(BaseModel):
+    """Represents the base class for all user data sets.
+    """
+    email = ''
+    password = ''
+    first_name = ''
+    last_name = ''

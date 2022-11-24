@@ -1,94 +1,88 @@
-section.filters {
-  background-color: white;
-  height: 70px;
-  width: 100%;
-  border: 1px solid #dddddd;
-  border-radius: 4px;
-  display: flex;
-}
-section.filters button {
-  font-size: 18px;
-  background-color: #ff5a5f;
-  color: #ffffff;
-  height: 48px;
-  width: 20%;
-  border: 0;
-  border-radius: 4px;
-  margin: auto 30px;
-}
-section.filters button:hover {
-  opacity: 90%;
-}
-section.filters div.locations,
-section.filters div.amenities {
-  height: 100%;
-  width: 25%;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-}
-section.filters div.locations {
-  border-right: 1px solid #dddddd;
+.filters {
+    display: flex;
+    position: relative;
+    background: #FFFFFF;
+    height: 70px;
+    width: calc(100% - 2 * 1px - 2 * 10px);
+    margin: 0 10px;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    align-items: center;
 }
 
-section.filters div.amenities {
-  margin-right: auto;
+.filters > button {
+    position: absolute;
+    width: 20%;
+    height: 48px;
+    right: 30px;
+    font-size: 18px;
+    color: #FFFFFF;
+    background: #FF5A5F;
+    border: none;
+    border-radius: 4px;
 }
-div.locations h3,
-div.amenities h3 {
-  font-weight: 600;
-  margin-bottom: 0px;
-  margin-left: 50px;
+
+.filters > button:hover {
+    opacity: 0.9;
 }
-div.locations h4,
-div.amenities h4 {
-  font-weight: 400;
-  font-size: 14px;
-  margin: 4px auto;
-  margin-left: 50px;
-  margin-bottom: 16px;
+
+.filters > *:first-child {
+    border-right: 1px solid #DDDDDD;
 }
-ul.popover {
-  list-style: none;
-  border: 1px solid #dddddd;
-  border-radius: 4px;
-  background-color: #fafafa;
-  margin-top: 0px;
-  padding-left: 0px;
-  padding-bottom: 20px;
-  padding-top: 20px;
+
+.filters > .locations,
+.filters > .amenities {
+    display: grid;
+    position: relative;
+    width: 25%;
+    height: 100%;
+    grid-template-rows: calc(50% - 10px) calc(50% - 10px);
+    padding: 10px 5px 5px 30px;
+    align-items: center;
 }
-div.locations ul,
-div.amenities ul {
-  display: none;
+
+.filters > .locations > h3,
+.filters > .amenities > h3 {
+    font-weight: 600;
+    margin: 0;
 }
-section.filters div.locations:hover > ul,
-section.filters div.amenities:hover > ul {
-  display: block;
-  z-index: 999;
+
+.filters > .locations > h4,
+.filters > .amenities > h4 {
+    font-weight: 400;
+    font-size: 14px;
+    margin: 0;
 }
-section.filters div.locations,
-section.filters div.amenities {
-  height: 100%;
-  width: 25%;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
+
+.filters > .locations > .popover,
+.filters > .amenities > .popover {
+    display: none;
+    position: absolute;
+    width: calc(100% - 60px - 2 * 1px);
+    top: 62px;
+    list-style-type: none;
+    background: #FAFAFA;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    padding: 30px;
+    z-index: 5;
 }
-div.locations ul.popover {
-  padding-bottom: 45px;
+
+.filters > .locations:hover > .popover,
+.filters > .amenities:hover > .popover,
+.popover:hover {
+    display: block;
 }
-div.locations ul.popover li h2 {
-  font-size: 18px;
-  padding-left: 35px;
-  margin-bottom: 4px;
-  margin-top: 0px;
+
+.filters > .locations > .popover > li > h2 {
+    margin: 5px;
 }
-div.locations ul.popover li h2.California {
-  margin-top: 30px;
+
+.filters > .locations > .popover > li:not(:first-child) {
+    margin-top: 20px;
 }
-div.locations ul.popover li p,
-div.amenities ul.popover li p {
-  padding-left: 50px;
-  margin: 6px;
+
+.filters > .locations > .popover > li > ul {
+    list-style-type: none;
+    padding-left: 20px;
 }

@@ -1,12 +1,11 @@
 #!/usr/bin/python3
-"""Contains the City model"""
+"""A module containing the model for city data sets.
+"""
 from models.base_model import BaseModel
 
+
 class City(BaseModel):
-    """Implements the City class"""
-    state_id = ""
-    name = ""
-
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    """Represents a city data set.
+    """
+    state_id = ''
+    name = ''

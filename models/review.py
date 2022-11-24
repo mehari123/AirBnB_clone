@@ -1,12 +1,12 @@
 #!/usr/bin/python3
-"""Contains the Review model"""
+"""A module containing the model for review data sets.
+"""
 from models.base_model import BaseModel
 
 
 class Review(BaseModel):
-    """Implements the Review model"""
-    place_id = ""
-    user_id = ""
-    text = ""
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    """Represents a review data set.
+    """
+    place_id = ''
+    user_id = ''
+    text = ''

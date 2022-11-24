@@ -1,49 +1,66 @@
 #!/usr/bin/python3
+"""A module containing the base model for all data sets.
 """
-A module that implements the BaseModel class
-"""
-
-from uuid import uuid4
 from datetime import datetime
+from uuid import uuid4
 
 
 class BaseModel:
+    """Represents the base class for all data sets.
     """
-    A class that defines all common attributes/methods for other classes
-    """
-
     def __init__(self, *args, **kwargs):
+        """Initializes a new instance of the BaseModel.
 
+        Args:
+            *args (tuple): Ignored.
+            kwargs: A dictionary of attribute keys-value pairs.
+        """
         from models import storage
-        if not kwargs:
-            self.id = str(uuid4())
-            self.created_at = self.updated_at = datetime.now()
-            storage.new(self)
-        else:
+        if len(kwargs) > 0:
             for key, value in kwargs.items():
                 if key != '__class__':
                     if key in ('created_at', 'updated_at'):
                         setattr(self, key, datetime.fromisoformat(value))
                     else:
                         setattr(self, key, value)
+            # self.updated_at = datetime.now()
+        else:
+            self.id = str(uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
+            storage.new(self)
 
     def __str__(self):
-        
-        return "[{}] ({}) {}".format(type(self).__name__, self.id,
-                                     self.__dict__)
+        """Creates a string representation of a BaseModel instance.
+
+        Returns:
+            str: A string representation of a BaseModel instance.
+        """
+        res = '[{}] ({}) {}'.format(
+            self.__class__.__name__,
+            self.id,
+            self.__dict__
+        )
+        return res
 
     def save(self):
-      
+        """Saves the changes made to this BaseModel instance.
+        """
         from models import storage
         self.updated_at = datetime.now()
         storage.save()
 
     def to_dict(self):
-        
-        dict_1 = self.__dict__.copy()
-        dict_1["__class__"] = self.__class__.__name__
-        for k, v in self.__dict__.items():
-            if k in ("created_at", "updated_at"):
-                v = self.__dict__[k].isoformat()
-                dict_1[k] = v
-        return dict_1
+        """Returns a dictionary consisting of this BaseModel instance's
+        attibute keys and values.
+
+        Returns: A dictionary of the attribute key-value pairs.
+        """
+        res = {}
+        for key, value in self.__dict__.items():
+            if isinstance(value, datetime):
+                res[key] = value.isoformat()
+            else:
+                res[key] = value
+        res['__class__'] = self.__class__.__name__
+        return res
