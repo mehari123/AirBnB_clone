@@ -28,15 +28,18 @@ class BaseModel:
                         setattr(self, key, value)
 
     def __str__(self):
+        
         return "[{}] ({}) {}".format(type(self).__name__, self.id,
                                      self.__dict__)
 
     def save(self):
+      
         from models import storage
         self.updated_at = datetime.now()
         storage.save()
 
     def to_dict(self):
+        
         dict_1 = self.__dict__.copy()
         dict_1["__class__"] = self.__class__.__name__
         for k, v in self.__dict__.items():

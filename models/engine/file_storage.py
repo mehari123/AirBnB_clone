@@ -23,15 +23,15 @@ class FileStorage:
     __objects = {}
 
     def all(self):
-
+        
         return self.__objects
 
     def new(self, obj):
-
+        
         self.__objects["{}.{}".format(obj.__class__.__name__, obj.id)] = obj
 
     def save(self):
-
+        
         with open(self.__file_path, mode="w") as f:
             dict_storage = {}
             for k, v in self.__objects.items():
@@ -39,7 +39,7 @@ class FileStorage:
             json.dump(dict_storage, f)
 
     def reload(self):
-
+        
         try:
             with open(self.__file_path, encoding="utf-8") as f:
                 for obj in json.load(f).values():
